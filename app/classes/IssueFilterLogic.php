@@ -499,6 +499,10 @@ class IssueFilterLogic
 
         $start = $pageSize * ($page - 1);
         $limit = " limit $start, " . $pageSize;
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', (string)$orderBy)) {
+            $orderBy = 'id';
+        }
+        $sortBy = (strtoupper((string)$sortBy) === 'ASC') ? 'ASC' : 'DESC';
         $order = empty($orderBy) ? '' : " Order By  $orderBy  $sortBy";
 
         $model = new IssueModel();
@@ -726,6 +730,10 @@ class IssueFilterLogic
 
         $start = $pageSize * ($page - 1);
         $limit = " limit $start, " . $pageSize;
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', (string)$orderBy)) {
+            $orderBy = 'id';
+        }
+        $sortBy = (strtoupper((string)$sortBy) === 'ASC') ? 'ASC' : 'DESC';
         $order = empty($orderBy) ? '' : " Order By  $orderBy  $sortBy";
 
         $model = new IssueModel();
